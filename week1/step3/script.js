@@ -14,7 +14,7 @@ document.body.onload = function() {
   const FDSR = 'fetch data for specific repository';
   const SBCL = 'search button clicked';
 
-  // This can be added here since the element is part of the document from the beginning
+  // This can be added here since these elements are part of the document since the beginning
   document.getElementById("findReposButton").setAttribute("messageType", FRBC);
   document.getElementById("searchButton").setAttribute("messageType", SBCL);
 
@@ -24,15 +24,31 @@ document.body.onload = function() {
   });
 
   function eventController(e) {
-    let messageType = e.target.getAttribute("messageType");
+    // traverse from target until body to find first DOM element with messageType
+    let _findMessageTypeAndNode = function(begin, end = document.body) {
+      let obj = {};
+      obj.node = begin;
+      obj.message = obj.node.getAttribute("messageType");
+
+      while (obj.node !== end) {
+        if (obj.message) break;
+        obj.node = obj.node.parentNode;
+        obj.message = obj.message || obj.node.getAttribute("messageType");
+      }
+      return obj;
+    }
+
+    let messageTypeAndNode = _findMessageTypeAndNode(e.target);
+
+    //let messageType = e.target.getAttribute("messageType");
     let url = "";
-    switch (messageType) {
+    switch (messageTypeAndNode.message) {
       case FRBC:
         console.log("You want me to fetch repositories");
         makeRequest("https://api.github.com/orgs/SocialHackersCodeSchool/repos", fetchRepositories);
         break;
       case FDSR:
-        let repoName = e.target.getAttribute("repoName");
+        let repoName = messageTypeAndNode.node.getAttribute("repoName");
         if (document.getElementById(repoName).className !== "repository enabled") {
           console.log("You want me to fetch data for a repository");
           url = REPO_PATH + repoName;
@@ -199,17 +215,18 @@ document.body.onload = function() {
     let p = document.createElement("p");
     p.innerHTML = data.description;
     p.className = "repoDescription";
+
+    // This is to handle messaging
     p.setAttribute("messageType", FDSR);
     p.setAttribute("repoName", data.name);
+
     repoContainer.appendChild(p);
 
     console.log("You want me to fetch contributors data for a repository");
     console.log(data.contributors_url);
     let contributorsElement = document.createElement("section");
     repoContainer.appendChild(contributorsElement);
-    // This is to handle messaging
-    contributorsElement.setAttribute("messageType", FDSR);
-    contributorsElement.setAttribute("repoName", data.name);
+
     // This fetches contributors data and fills the elements inside the SECTION
     makeRequest(data.contributors_url, fetchContributorsData);
 
@@ -225,9 +242,6 @@ document.body.onload = function() {
     let sectionEl = document.querySelector(`#${repoName} section`);
     let sectionTitle = document.createElement("h4");
     sectionTitle.innerHTML = "Contributors";
-    // This is to handle messaging
-    sectionTitle.setAttribute("messageType", FDSR);
-    sectionTitle.setAttribute("repoName", repoName);
     sectionEl.appendChild(sectionTitle);
 
     if (data.length > 0) {
@@ -239,26 +253,14 @@ document.body.onload = function() {
         let aEl = document.createElement("a");
         aEl.href = data[i].html_url;
         aEl.appendChild(h5El);
-        // This is to handle messaging
-        h5El.setAttribute("messageType", FDSR);
-        h5El.setAttribute("repoName", repoName);
         contributorsSection.appendChild(aEl);
         let imgEl = document.createElement("img");
         imgEl.src = data[i].avatar_url;
         imgEl.alt = "contributor's avatar";
-        // This is to handle messaging
-        imgEl.setAttribute("messageType", FDSR);
-        imgEl.setAttribute("repoName", repoName);
         contributorsSection.appendChild(imgEl);
         let pEl = document.createElement("p");
         pEl.innerHTML = `Contributions so far: ${data[i].contributions}`;
-        // This is to handle messaging
-        pEl.setAttribute("messageType", FDSR);
-        pEl.setAttribute("repoName", repoName);
         contributorsSection.appendChild(pEl);
-        // This is to handle messaging
-        contributorsSection.setAttribute("messageType", FDSR);
-        contributorsSection.setAttribute("repoName", repoName);
         sectionEl.appendChild(contributorsSection);
       }
     } else {
@@ -266,13 +268,7 @@ document.body.onload = function() {
 
       let pEl = document.createElement("p");
       pEl.innerHTML = `None so far`;
-      // This is to handle messaging
-      pEl.setAttribute("messageType", FDSR);
-      pEl.setAttribute("repoName", repoName);
       contributorsSection.appendChild(pEl);
-      // This is to handle messaging
-      contributorsSection.setAttribute("messageType", FDSR);
-      contributorsSection.setAttribute("repoName", repoName);
       sectionEl.appendChild(contributorsSection);
     }
   }
