@@ -16,15 +16,15 @@ document.body.onload = function() {
 
   // This can be added here since these elements are part of the document since the beginning
   document.getElementById("submitUsername").setAttribute("messageType", FRBC);
-/* ---- REMOVE THESE TO USE THE SUBMIT FORM
-  document.getElementById("findReposButton").setAttribute("messageType", FRBC);
-*/
   document.getElementById("searchButton").setAttribute("messageType", SBCL);
 
   // We use only one event listener for performance reasons
   document.body.addEventListener("click", function(e) {
     eventController(e);
   });
+
+  // This stores the user.
+  let gitUser;
 
   function eventController(e) {
     // traverse from target until body to find first DOM element with messageType
