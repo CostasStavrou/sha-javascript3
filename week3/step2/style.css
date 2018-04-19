@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+div.hide {
+  display: none;
+}
+
+div.show {
+  display: block;
+}
+
+#landing_page form {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+#landing_page form > input {
+  width: 100%;
+  margin: 0.25rem;
+  height: 2rem;
+  font-size: 1.1rem;
+}
+
+.repositories {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.repositories section {
+  border: 1px solid black;
+  padding: 0.25rem 1rem;
+  margin: 0.25rem;
+}
+
+.repositories section:nth-child(2n) {
+  background-color: #f5f5f5;
+}
+
+.repositories section:nth-child(2n+1) {
+  background-color: #e2e2e2;
+}
+
+.repositories h4 {
+  margin: 0.5rem 0;
+}
+
+@media screen and (min-width: 26rem) {
+  #landing_page form {
+    width: 25rem;
+  }
+
+  #landing_page form > input {
+    width: 25rem;
+  }
+}
+
+@media screen and (max-width: 25rem) {
+  .repositories section {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 25.001rem) and (max-width: 50rem) {
+  .repositories section {
+    width:  calc(50% - (2.5rem + 2px));
+  }
+}
+
+@media screen and (min-width: 50.001rem) and (max-width: 75rem) {
+  .repositories section {
+    width: calc(33% - (2.5rem + 2px));
+  }
+}
+
+@media screen and (min-width: 75.001rem) {
+  .repositories section {
+    width: 25rem;
+  }
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" value="width=device-width, initial-scale=1">
+  <title>Exercsises for week 3 of JavaScript module 3 at SocialHackersAcademy</title>
+  </head>
+  <body>
+    <h1><a href="http://socialhackersacademy.org">SocialHackersAcademy</a></h1>
+	<p>This is a multi-step exercise. There
+	<a href="https://github.com/SocialHackersCodeSchool/JavaScript/blob/master/Week9/MAKEME.md">are
+	 detailed information</a>.
+    <h2>Step 1</h2>
+	<ol>
+	  <li><span style="font-weight:bold">Answer</span>
+	  <p>This is a let statement inside a for statement. So it is the same
+	  as the following:
+	  <pre>
+{
+let i = 0;
+setTimeout(function() {
+  console.log(i);
+  }, 1000 + i);
+}
+
+{
+let i = 1;
+setTimeout(function() {
+  console.log(i);
+  }, 1000 + i);
+}
+
+{
+let i = 2;
+setTimeout(function() {
+  console.log(i);
+  }, 1000 + i);
+}
+      </pre>
+	  So this creates 3 different bindings for i. It is like the following (using var):
+	  <pre>
+{
+var i0 = 0;
+setTimeout(function() {
+  console.log(i0);
+  }, 1000 + i0);
+}
+
+{
+var i1 = 1;
+setTimeout(function() {
+  console.log(i1);
+  }, 1000 + i1);
+}
+{
+var i2 = 2;
+setTimeout(function() {
+  console.log(i2);
+  }, 1000 + i2);
+}
+	  </pre>
+	  So, the output is:
+	  <pre>
+0
+1
+2
+	  </pre>
+	  </p></li>
+	  <li><span style="font-weight:bold">Answer</span>
+	  <p>We use a closure.
+	  <pre>
+function createBase(addToX) {
+  return function(X) {
+    return X + addToX;
+  }
+}
+let addSix = createBase(6);
+addSix(10);
+addSix(21);
+	  </pre>
+	  </p></li>
+	  <li><span style="font-weight:bold">Answer</span>
+	  <p>When we have this piece of code:
+	  <pre>
+let prizes = ["A Unicorn!", "A Hug!", "Fresh Laundry!"];
+
+for (let btnNum = 0; btnNum < prizes.length; btnNum++) {
+  document.getElementById("btn-" + btnNum).onclick = function() {
+	    alert(prizes[btnNum]);
+  };
+}
+	  </pre>
+	  it works as expected. If we had the following:
+	  <pre>
+var prizes = ["A Unicorn!", "A Hug!", "Fresh Laundry!"];
+
+for (var btnNum = 0; btnNum < prizes.length; btnNum++) {
+  document.getElementById("btn-" + btnNum).onclick = function() {
+	    alert(prizes[btnNum]);
+  };
+}
+	  </pre>
+	  it would not work as expected. We register on the click event a function
+	  that executes when we are already out of the for loop. Because var does
+	  not create a new binding for btnNum each time the loop executes, at the time we call
+	  the function, btnNum is equal to 3 and the value of prizes[3] is undefined.</p>
+	  <p>With the introduction of let, the engine creates a different binding for
+	  btnNum in each loop iteration. It creates 3 different functions to assign to the
+	  onclick property of the DOM element, each one using the correct binding of
+	  btnNum. This is like executing the following code:
+	  <pre>
+var prizes = ["A Unicorn!", "A Hug!", "Fresh Laundry!"];
+
+{
+  var btnNum0 = 0;
+  document.getElementById("btn-" + btnNum0).onclick = function() {
+    alert(prizes[btnNum0]);
+  };
+}
+
+{
+  var btnNum1 = 1;
+  document.getElementById("btn-" + btnNum1).onclick = function() {
+    alert(prizes[btnNum1]);
+  };
+}
+
+{
+  var btnNum2 = 2;
+  document.getElementById("btn-" + btnNum2).onclick = function() {
+    alert(prizes[btnNum2]);
+  };
+}
+	  </pre>
+	  </p>
+	  <p>If the let keyword was not introduced in ES6, we could use a function
+	  that creates the 3 different functions we need, enclosing the correct value
+	  of btnNum. Basically we would use closures. The code like in Step 1,2  should be
+	  like the following:
+	  <pre>
+var prizes = ["A Unicorn!", "A Hug!", "Fresh Laundry!"];
+
+for (var btnNum = 0; btnNum < prizes.length; btnNum++) {
+  document.getElementById("btn-" + btnNum).onclick = createFunction(btnNum);
+}
+
+function createFunction(value) {
+  return function() {
+    alert(prizes[value]);
+  }
+}
+	  </pre>
+	  </p></li>
+	  <li>
+	  <ol>
+	    <li><span style="font-weight:bold">Answer</span>
+		<pre>
+let sum = new Promise(function(resolve, reject) {
+  resolve(calculateSum(2, 6));
+}).then(function(data) {
+  console.log(data);
+});
+        </pre></li>
+	    <li><span style="font-weight:bold">Answer</span>
+		<pre>
+let showResults = new Promise(function(resole, reject) {
+  resolve($.getJSON('https://jsonplaceholder.typicode.com/posts/1'));
+}).then(function(data) {
+  showResults(data);
+});
+        </pre></li>
+		<li><span style="font-weight:bold">Answer</span>
+		<pre>
+let sum = new Promise(function(resolve, reject) {
+  var result = calculateSum(2, 6);
+  if (result > 8) {
+    resolve(result);
+  }
+}).then(function(data) {
+  console.log("larger than 8");
+});
+        </pre></li>
+		<li><span style="font-weight:bold">Answer</span>
+		<pre>
+let array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+let even = new Promise(function(resolve, reject) {
+  resolve(getEven(array));
+}).then(function(data) {
+  console.log(data);
+});
+
+function getEven(arr) {
+  return arr.filter(element => (element % 2 === 0));
+}
+        </pre></li>
+      </ol></li>
+	</ol>
+
+    <a href="./step3/index.html"><h2>Step 3</h2></a>
+
+  </body>
+</html>
