@@ -1,9 +1,8 @@
-﻿# [SocialHackersAcademy](https://www.socialhackersacademy.org/) - JavaScript third module
- week 1
+# [SocialHackersAcademy](https://www.socialhackersacademy.org/) - JavaScript third module week 1
 
 ## Some freeCodeCamp challenges:
 
-1. [Comparisons with the Logical And Operator](https://www.freecodecamp.com/challenges/comparisons-with-the-logical-and-operator)
+1.[ Comparisons with the Logical And Operator](https://www.freecodecamp.com/challenges/comparisons-with-the-logical-and-operator)
 
   **Answer**
 
@@ -21,7 +20,7 @@
   testLogicalAnd(10);
   ```
 
-2. [Record Collection](https://www.freecodecamp.com/challenges/record-collection)
+2.[ Record Collection](https://www.freecodecamp.com/challenges/record-collection)
 
   **Answer**
 
@@ -66,7 +65,7 @@
   //   ...  code ...
   ```
 
-3. [Iterate over Arrays with map](https://www.freecodecamp.com/challenges/iterate-over-arrays-with-map)
+3.[ Iterate over Arrays with map](https://www.freecodecamp.com/challenges/iterate-over-arrays-with-map)
 
   **Answer**
 
@@ -81,7 +80,7 @@
 
 ## More map, filter, reduce, and =>
 
-1. Say you would like to write a program that doubles the odd numbers in an array and throws away the even number.
+1.Say you would like to write a program that doubles the odd numbers in an array and throws away the even number.
 
 Your solution could be something like this:
 ```js
@@ -106,7 +105,7 @@ rewrite the above program using `map` and `filter` don't forget to use `=>`
 let newNumbers = numbers.filter(ell => (ell%2 !== 0)).map(ell => (2*ell));
 ```
 
-2. Use the array of the previous assignment, write a program that adds the even numbers to the resulting array twice, but the odd numbers only once. Don't forget to use `=>`.
+2.Use the array of the previous assignment, write a program that adds the even numbers to the resulting array twice, but the odd numbers only once. Don't forget to use `=>`.
 
 Your output should be:
 ```js
@@ -126,7 +125,7 @@ var newNumbers = numbers
   },[]);
 ```
 
-3. Underneath you see a very interesting small insight in Maartje's work:
+3.Underneath you see a very interesting small insight in Maartje's work:
 ```js
 let monday = [
         {
@@ -179,7 +178,7 @@ let tasks = [monday, tuesday];
 
  Write a program that does the following:
 
-1. Collect two days' worth of tasks.
+1.Collect two days' worth of tasks.
 
 **Answer**
 
@@ -187,7 +186,7 @@ let tasks = [monday, tuesday];
 let collectedTasks = tasks[0].concat(tasks[1]);
 ```
 
-2. Convert the task durations to hours, instead of minutes.
+2.Convert the task durations to hours, instead of minutes.
 
 **Answer**
 
@@ -200,7 +199,7 @@ let convertedTasks = collectedTasks
 });
 ```
 
-3. Filter out everything that took two hours or more.
+3.Filter out everything that took two hours or more.
 
 **Answer**
 
@@ -208,7 +207,7 @@ let convertedTasks = collectedTasks
 let filteredTasks = convertedTasks.filter(item => (item.duration.hours < 2));
 ```
 
-4. Sum it all up.
+4.Sum it all up.
 
 **Answer**
 
@@ -222,7 +221,7 @@ sum.hours = Math.floor(sumInMinutes / 60);
 sum.minutes = sumInMinutes % 60;
 ```
 
-5. Multiply the result by a per-hour rate for billing (you can decide yourself what Maartje should make per hour).
+5.Multiply the result by a per-hour rate for billing (you can decide yourself what Maartje should make per hour).
 
 **Answer**
 
@@ -231,7 +230,7 @@ const perHourRate = 20;
 let salary = (sumInMinutes * perHourRate) / 60;
 ```
 
-6. Output a formatted Euro amount.
+6.Output a formatted Euro amount.
 
 **Answer**
 
@@ -239,7 +238,7 @@ let salary = (sumInMinutes * perHourRate) / 60;
 console.log("Salary: " + salary.toFixed(2) + " euros.");
 ```
 
-7. Don't forget to use `=>`
+7.Don't forget to use `=>`
 
 __Note: In every step we include the code from the previous steps__
 
