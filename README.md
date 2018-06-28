@@ -22,7 +22,7 @@ and reduce Array functions and the use of arrow functions in JavaScript.
 
 ### freeCodeCamp and more exercises on map, filter, reduce and arrow functions
 
-[Detailed descriptions and answers](https://costasstavrou.github.io/sha-javascript3/week1/README.md)
+[Detailed descriptions and answers](https://costasstavrou.github.io/sha-javascript3/week1/)
 
 
 
