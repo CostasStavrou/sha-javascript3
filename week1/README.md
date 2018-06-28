@@ -5,78 +5,78 @@
 
 1. [Comparisons with the Logical And Operator](https://www.freecodecamp.com/challenges/comparisons-with-the-logical-and-operator)
 
-**Answer**
+  **Answer**
 
-```js
-function testLogicalAnd(val) {
-  // Only change code below this line
+  ```js
+  function testLogicalAnd(val) {
+    // Only change code below this line
 
-  if ((val <= 50) && (val >= 25)) return "Yes";
+    if ((val <= 50) && (val >= 25)) return "Yes";
 
-  // Only change code above this line
-  return "No";
-}
+    // Only change code above this line
+    return "No";
+  }
 
-// Change this value to test
-testLogicalAnd(10);
-```
+  // Change this value to test
+  testLogicalAnd(10);
+  ```
 
 2. [Record Collection](https://www.freecodecamp.com/challenges/record-collection)
 
-**Answer**
+  **Answer**
 
-```js
-//   ...  code ...
-// Only change code below this line
-function updateRecords(id, prop, value) {
-  var album = collection[id];
+  ```js
+  //   ...  code ...
+  // Only change code below this line
+  function updateRecords(id, prop, value) {
+    var album = collection[id];
 
-/* If value is empty (""), delete the given prop property from the album.  */
-  if (value === "") {
-    if (!!album[prop]) delete album[prop];
-  } else {
-
-/* If prop isn't "tracks" and value isn't empty (""), update or set the value for that record album's property. */
-
-    if ((prop !== "tracks") && (value !=="")) {
-        album[prop] = value;
+  /* If value is empty (""), delete the given prop property from the album.  */
+    if (value === "") {
+      if (!!album[prop]) delete album[prop];
     } else {
 
-/* If prop is "tracks" but the album doesn't have a "tracks" property, create an empty array before adding the new value to the album's corresponding property.
-*/
-      var arr = album[prop];
-      if (!arr) {
-        console.log(arr);
-        arr = [];
-        arr.push(value);
-        album[prop] = arr;
-        arr = null;
-        console.log(album[prop]);
-      } else {
- /* If prop is "tracks" and value isn't empty (""), push the value onto the end of the album's existing tracks array.
- */
-        arr.push(value);
-        arr = null;
-      }
+  /* If prop isn't "tracks" and value isn't empty (""), update or set the value for that record album's property. */
 
-    } // Here we close the if prop is not tracks statement
-  } // here we close the if value is empty statement
-  return collection;
-}
-//   ...  code ...
-```
+      if ((prop !== "tracks") && (value !=="")) {
+          album[prop] = value;
+      } else {
+
+  /* If prop is "tracks" but the album doesn't have a "tracks" property, create an empty array before adding the new value to the album's corresponding property.
+  */
+        var arr = album[prop];
+        if (!arr) {
+          console.log(arr);
+          arr = [];
+          arr.push(value);
+          album[prop] = arr;
+          arr = null;
+          console.log(album[prop]);
+        } else {
+   /* If prop is "tracks" and value isn't empty (""), push the value onto the end of the album's existing tracks array.
+   */
+          arr.push(value);
+          arr = null;
+        }
+
+      } // Here we close the if prop is not tracks statement
+    } // here we close the if value is empty statement
+    return collection;
+  }
+  //   ...  code ...
+  ```
 
 3. [Iterate over Arrays with map](https://www.freecodecamp.com/challenges/iterate-over-arrays-with-map)
 
-**Answer**
+  **Answer**
 
-```js
-var oldArray = [1,2,3,4,5];
+  ```js
+  var oldArray = [1,2,3,4,5];
 
-// Only change code below this line.
+  // Only change code below this line.
 
-var newArray = oldArray.map(function(item) { return item += 3; });
-```
+  var newArray = oldArray.map(function(item) { return item += 3; });
+  ```
 
 
 ## More map, filter, reduce, and =>
